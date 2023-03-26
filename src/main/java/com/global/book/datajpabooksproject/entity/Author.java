@@ -2,6 +2,7 @@ package com.global.book.datajpabooksproject.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.global.book.datajpabooksproject.base.BaseEntity;
+import com.global.book.datajpabooksproject.validator.IpAddress;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -18,7 +19,8 @@ public class Author extends BaseEntity<Long> {
     @NotEmpty
     @NotBlank
     private String name;
-    @Pattern(regexp = "^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$")
+//    @Pattern(regexp = "^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$")
+    @IpAddress(message = "Should be enter valid ip address")
     private String ipAddress;
     @Email
     private String email;
