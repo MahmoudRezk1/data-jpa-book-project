@@ -1,6 +1,7 @@
 package com.global.book.datajpabooksproject.controller;
 
 import com.global.book.datajpabooksproject.entity.Author;
+import com.global.book.datajpabooksproject.entity.AuthorSearch;
 import com.global.book.datajpabooksproject.service.AuthorService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -42,6 +43,10 @@ public class AuthorController {
     public ResponseEntity<?> deleteById(@RequestParam Long id) {
         authorService.deleteById(id);
         return ResponseEntity.ok(null);
+    }
+    @PostMapping(path = "findByAuthorSpec")
+    public ResponseEntity<?> findByAuthorSpec(@RequestBody AuthorSearch authorSearch){
+        return ResponseEntity.ok(authorService.getAuthorBySpec(authorSearch));
     }
 }
 

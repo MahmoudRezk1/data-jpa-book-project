@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @MappedSuperclass
-public class BaseService <T extends BaseEntity<ID>,ID extends Number> {
+public class BaseService<T extends BaseEntity<ID>, ID extends Number> {
     @Autowired
-    private BaseRepository<T ,ID> baseRepository;
+    private BaseRepository<T, ID> baseRepository;
+
     public T findById(ID id) {
         return baseRepository.findById(id).get();
     }
@@ -33,6 +34,7 @@ public class BaseService <T extends BaseEntity<ID>,ID extends Number> {
     public T update(T t) {
         return baseRepository.save(t);
     }
+
     public void deleteById(ID id) {
         baseRepository.deleteById(id);
     }
