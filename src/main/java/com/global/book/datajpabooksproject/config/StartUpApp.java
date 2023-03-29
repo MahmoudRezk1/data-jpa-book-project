@@ -18,32 +18,37 @@ public class StartUpApp implements CommandLineRunner {
     private BookService bookService;
     @Override
     public void run(String... args) throws Exception {
-//       adding demo data for Author Table
-        Author author1 = new Author();
-        author1.setName("Ali");
-        Author author2 = new Author();
-        author2.setName("Mahmoud");
-        Author author3 = new Author();
-        author3.setName("Ahmed");
 
-        authorService.insertAll(Arrays.asList(author1,author2,author3));
+//       adding demo data for Author Table
+        if(authorService.findAll().isEmpty()) {
+            Author author1 = new Author();
+            author1.setName("Ali");
+            Author author2 = new Author();
+            author2.setName("Mahmoud");
+            Author author3 = new Author();
+            author3.setName("Ahmed");
+
+            authorService.insertAll(Arrays.asList(author1, author2, author3));
+        }
 
 //        adding demo data for Book Table
-        Book book1 = new Book();
-        book1.setName("Data Jpa");
-        book1.setPrice(100.0);
-        book1.setAuthor(authorService.getById(1L));
+        if(bookService.findAll().isEmpty()) {
+            Book book1 = new Book();
+            book1.setName("Data Jpa");
+            book1.setPrice(100.0);
+            book1.setAuthor(authorService.getById(1L));
 
-        Book book2 = new Book();
-        book2.setName("JDBC Data");
-        book2.setPrice(200.0);
-        book2.setAuthor(authorService.getById(2L));
+            Book book2 = new Book();
+            book2.setName("JDBC Data");
+            book2.setPrice(200.0);
+            book2.setAuthor(authorService.getById(2L));
 
-        Book book3 = new Book();
-        book3.setName("Boot");
-        book3.setPrice(300.0);
-        book3.setAuthor(authorService.getById(3L));
+            Book book3 = new Book();
+            book3.setName("Boot");
+            book3.setPrice(300.0);
+            book3.setAuthor(authorService.getById(3L));
 
-        bookService.insertAll(Arrays.asList(book1,book2,book3));
+            bookService.insertAll(Arrays.asList(book1, book2, book3));
+        }
     }
 }

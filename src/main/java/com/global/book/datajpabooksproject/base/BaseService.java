@@ -1,9 +1,11 @@
 package com.global.book.datajpabooksproject.base;
 
+import com.global.book.datajpabooksproject.error.RecordNotFoundException;
 import jakarta.persistence.MappedSuperclass;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 @MappedSuperclass
 public class BaseService<T extends BaseEntity<ID>, ID extends Number> {
@@ -11,7 +13,12 @@ public class BaseService<T extends BaseEntity<ID>, ID extends Number> {
     private BaseRepository<T, ID> baseRepository;
 
     public T findById(ID id) {
-        return baseRepository.findById(id).get();
+        Optional<T> entity = baseRepository.findById(id);
+        if (entity.isPresent()){
+        return entity.get();
+        }else {
+            throw new RecordNotFoundException("entity with id: "+id+" not found");
+        }
     }
 
     public T getById(ID id) {
