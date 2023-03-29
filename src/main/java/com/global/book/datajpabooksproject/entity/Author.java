@@ -20,9 +20,9 @@ public class Author extends BaseEntity<Long> {
     @NotBlank
     private String name;
 //    @Pattern(regexp = "^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$")
-    @IpAddress(message = "Should be enter valid ip address")
+    @IpAddress()
     private String ipAddress;
-    @Email
+    @Email(message = "{validation.constraints.email.message}")
     private String email;
 
 

@@ -19,7 +19,7 @@ public class AuthorService extends BaseService<Author,Long> {
     @Override
     public Author insert(Author t) {
         if (findByEmail(t.getEmail()).isPresent()){
-            throw new DuplicateRecordException("This email already found with another auther");
+            throw new DuplicateRecordException("This email already found with another author");
         }else
         return authorRepo.save(t);
     }
